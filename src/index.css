@@ -1,0 +1,252 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 84% 4.9%;
+
+    --primary: 203 73% 37%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 210 40% 98%;
+    --secondary-foreground: 222 84% 4.9%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 84% 4.9%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 203 73% 37%;
+
+    --radius: 0.75rem;
+
+    /* Finance specific variables */
+    --finance-primary: 203 73% 37%;
+    --finance-secondary: 203 90% 22%;
+    --finance-green: 142 76% 36%;
+    --finance-red: 0 84% 60%;
+    --finance-yellow: 43 96% 56%;
+    --finance-purple: 262 83% 58%;
+    --finance-gray: 215 16% 47%;
+    --finance-blue: 203 73% 37%;
+
+    /* Sidebar variables */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 84% 4.9%;
+    --sidebar-primary: 203 73% 37%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 222 84% 4.9%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 203 73% 37%;
+  }
+
+  .dark {
+    --background: 222 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 203 73% 37%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 217 32% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 217 32% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 217 32% 17%;
+    --input: 217 32% 17%;
+    --ring: 203 73% 37%;
+
+    /* Finance specific dark mode variables */
+    --finance-primary: 203 73% 37%;
+    --finance-secondary: 203 90% 22%;
+    --finance-green: 142 76% 36%;
+    --finance-red: 0 84% 60%;
+    --finance-yellow: 43 96% 56%;
+    --finance-purple: 262 83% 58%;
+    --finance-gray: 215 20% 65%;
+    --finance-blue: 203 73% 37%;
+
+    /* Sidebar dark mode variables */
+    --sidebar-background: 222 84% 4.9%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 203 73% 37%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 217 32% 17%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 32% 17%;
+    --sidebar-ring: 203 73% 37%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-geist tracking-tight;
+  }
+
+  /* Garantir alinhamento perfeito das bordas */
+  header.border-b {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+  }
+
+  .border-b.border-border {
+    border-bottom-color: hsl(var(--border));
+  }
+}
+
+@layer components {
+  .finance-card {
+    @apply bg-card text-card-foreground rounded-xl shadow-lg border border-border p-6 md:p-8 glass-hover;
+  }
+
+  .input-finance {
+    @apply px-4 py-3 rounded-lg border border-input bg-background text-foreground 
+           focus:outline-none focus:ring-2 focus:ring-ring focus:border-primary
+           transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply button-gradient text-white px-6 py-3 rounded-lg font-medium
+           hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground px-6 py-3 rounded-lg font-medium border border-border
+           hover:bg-secondary/80 hover:shadow-md transform hover:-translate-y-0.5 
+           transition-all duration-300;
+  }
+
+  .btn-outline {
+    @apply border border-primary text-primary px-6 py-3 rounded-lg font-medium
+           hover:bg-primary hover:text-primary-foreground hover:shadow-lg transform hover:-translate-y-0.5
+           transition-all duration-300;
+  }
+
+  .btn-ghost {
+    @apply text-foreground px-6 py-3 rounded-lg font-medium
+           hover:bg-accent hover:text-accent-foreground hover:shadow-md transform hover:-translate-y-0.5
+           transition-all duration-300;
+  }
+
+  .section-padding {
+    @apply px-4 md:px-6 lg:px-8;
+  }
+
+  .section-spacing {
+    @apply py-20 md:py-24;
+  }
+
+  .glass-nav {
+    @apply bg-background/90 backdrop-blur-lg border border-border/20 shadow-lg;
+  }
+
+  .glass {
+    @apply bg-card/80 backdrop-blur-lg shadow-lg border border-border/50;
+  }
+
+  .glass-hover {
+    @apply transition-all duration-300 hover:bg-card/95 hover:shadow-xl hover:border-border/80;
+  }
+
+  .spotlight {
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+                hsl(var(--primary) / 0.1) 0%, 
+                hsl(var(--primary) / 0.05) 25%, 
+                transparent 50%);
+  }
+}
+
+@layer utilities {
+  .animate-marquee {
+    animation: marquee 25s linear infinite;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.4s ease-out;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .button-gradient {
+    @apply bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
