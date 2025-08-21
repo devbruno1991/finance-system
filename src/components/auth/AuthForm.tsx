@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Button } from '@/components/ui/button';
@@ -26,6 +25,23 @@ export const AuthForm = () => {
     fullName: '',
   });
 
+  // Novo: função para login com Google
+  const signInWithGoogle = async () => {
+    try {
+      setLoading(true);
+      const { error } = await signIn('google');
+      if (error) {
+        toast({
+          title: 'Erro ao fazer login com Google',
+          description: error.message,
+          variant: 'destructive',
+        });
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -44,7 +60,6 @@ export const AuthForm = () => {
         description: 'Bem-vindo de volta.',
       });
       
-      // Force navigation after successful login
       setTimeout(() => {
         navigate("/dashboard", { replace: true });
       }, 100);
@@ -115,6 +130,17 @@ export const AuthForm = () => {
                 </div>
                 <Button type="submit" className="w-full" disabled={loading}>
                   {loading ? 'Entrando...' : 'Entrar'}
+                </Button>
+
+                {/* Botão Google */}
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="w-full mt-4"
+                  onClick={signInWithGoogle}
+                  disabled={loading}
+                >
+                  Entrar com Google
                 </Button>
               </form>
             </TabsContent>
